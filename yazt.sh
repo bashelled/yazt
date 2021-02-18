@@ -1,3 +1,6 @@
+# yazt.sh: Yazt loader based on Oh My ZSH
+
+# Sets Yazt custom.
 if [[ -z "$yaztcustom" ]]; then
     yaztcustom="$yazt/usr"
 fi
