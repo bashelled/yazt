@@ -14,6 +14,8 @@ if [ ! "$yazttheme" = ""  ]; then
   else
     source "$yazt/themes/$yazttheme.yzt"
   fi
+  else
+    source "$yazt/themes/$yazttheme.yzt"
 fi
 
 # Yazp loader.
