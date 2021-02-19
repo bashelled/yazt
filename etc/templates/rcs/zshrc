@@ -6,7 +6,21 @@
 yazt="$HOME/.yazt"
 
 ## Your Yazt theme. If not picked, the default (default.yzt) will be picked.
-yazttheme="stated"
+yazttheme="default"
+
+## Turns on Yazp, the plugin backend for Yazt.
+## WARN: No plugins are installed by default.
+yazpon=false
+
+ ## Yazp plugins. Put it in this format:
+ ## yazpplugins=(
+ ## plugin 
+ ## otherplugin
+ ## )
+ yazpplugins=(
+ git
+ brew
+ )
 
 # Initializes Yazt.
 source "$yazt/yazt.sh"

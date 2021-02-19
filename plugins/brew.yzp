@@ -1,0 +1,9 @@
+# brew.yzp - A Yazt plugin for Homebrew, the missing package manager for macOS and Linux/WSL
+
+if [ "$OSTYPE" = "darwin" ]; then
+function cask() {
+brew cask
+} 
+fi
+
+
