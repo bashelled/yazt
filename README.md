@@ -13,6 +13,7 @@ make
 On macOS and Linux, you can install using Homebrew:
 ```
 brew tap bashelled/bashelled
+brew update
 brew install yazt
 ```
 
