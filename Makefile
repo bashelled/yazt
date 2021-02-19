@@ -1,6 +1,7 @@
 	
 move_files:
 	@echo "==> Moving Yazt files..."
+	mkdir -p ~/.yazt
 	mv -v ./* ~/.yazt
 
 copy_rc: move_files
