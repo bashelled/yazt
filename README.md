@@ -1,5 +1,6 @@
 # Yazt
-> Yet another ZSH theme
+> Yet another ZSH theme 
+
 Yazt is a simple zsh theme manager in maintence that is compatible with nearly everything. You can use prompts in plugins, mix 'n' match two themes, with a few modifications, you can even use it in bash.
 
 ## Installation
