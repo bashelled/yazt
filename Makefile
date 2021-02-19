@@ -5,5 +5,5 @@ install:
 	@echo "==> Copying zshrc..."
 	cp ~/.yazt/etc/templates/rcs/zshrc  ~/.zshrc
 	@echo "==> Changing shell..."
-	chsh -s $(which zsh)
+	chsh -s /usr/bin/zsh
 	@echo "Yazt installed"
