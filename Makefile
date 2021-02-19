@@ -4,6 +4,5 @@ install:
 	git clone https://github.com/bashelled/yazt ~/.yazt
 	@echo "==> Copying zshrc..."
 	cp ~/.yazt/etc/templates/rcs/zshrc  ~/.zshrc
-	@echo "==> Changing shell..."
-	chsh -s /usr/bin/zsh
+	@echo "Change your shell manually."
 	@echo "Yazt installed"
