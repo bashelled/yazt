@@ -1,9 +1,11 @@
 # brew.yzp - A Yazt plugin for Homebrew, the missing package manager for macOS and Linux/WSL
 
+# If using Darwin/macOS
 if [ "$OSTYPE" = "darwin" ]; then
-function cask() {
-brew cask
-} 
+alias cask="brew cask"
 fi
 
-
+alias brewed="brew edit"
+alias brewfix="brew --prefix"
+alias brewver="brew --version"
+alias tap="brew tap"
