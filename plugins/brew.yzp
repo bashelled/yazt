@@ -5,19 +5,20 @@ if [ "$OSTYPE" = "darwin" ]; then
 alias cask="brew cask"
 fi
 
-# Brew formula editor
+# Brew formula editor (you must set $editor for example, vi, vim, nano, emacs, atom, gedit.)
 alias brewed="brew edit"
+alias brewmake="brew create"
 
 # Brew prefix ($HOMEBREW_PREFIX)
 alias brewfix="brew --prefix"
 
 # Brev version
-alias brewver="brew --version
+alias brewver="brew --version"
 
 # Brew taps (example: homebrew/homebrew-core)
 alias tap="brew tap"
 alias utap="brew untap"
 
 # Verbose and debug
-alias verbrew="brew --verbose"
-alias debrew-"brew --debug"
+alias verbrew-install="brew install --verbose"
+alias debrew-install="brew --debug"
