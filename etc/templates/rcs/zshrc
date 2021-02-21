@@ -10,7 +10,7 @@ yazttheme="default"
 
 ## Turns on Yazp, the plugin backend for Yazt.
 ## WARN: No plugins are installed by default.
-yazpon=false
+yazpon=true
 
  ## Yazp plugins. Put it in this format:
  ## yazpplugins=(
