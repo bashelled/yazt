@@ -5,11 +5,9 @@ Yazt is a simple yet challenging ZSH theme manager in maintence that is compatib
 
 ## Installation
 ```
-git clone https://github.com/bashelled/yazt.git
-cd yazt
-make
-cd ..
-rm -rf yazt
+git clone https://github.com/bashelled/yazt.git ~/.yazt
+cp ~/.yazt/etc/templates/rcs/zshrc ~/.zshrc
+chsh -s $(which zsh)
 ```
 
 On macOS and Linux, you can install using Homebrew:
