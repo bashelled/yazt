@@ -1,1 +1,6 @@
-alias gh-clone='git clone https://github.com/'
+#!/bin/zsh
+# git.yzp - Yazp plugin for Git
+
+# Quick commit: adds everything in Git repo and commits.
+alias git-qc="git add -A && git commit"
+alias git-qcp="git add -A && git commir && git push -u origin master"

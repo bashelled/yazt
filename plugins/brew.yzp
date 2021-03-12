@@ -21,4 +21,7 @@ alias utap="brew untap"
 
 # Verbose and debug
 alias verbrew-install="brew install --verbose"
-alias debrew-install="brew --debug"
+alias debrew-install="brew install --debug"
+
+# Brew Bundle (if not working, make sure you have brew bundle installed)
+alias bundle="brew bundle"
