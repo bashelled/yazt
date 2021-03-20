@@ -8,12 +8,17 @@ pause() {
 }
 
 usage () {
+echo "usage: yazt [-uhvXTPU] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]"
+}
+
+help () {
 echo "usage: yazt <operation> [...]"
 echo "operations:"
+echo "    yazt {-u --usage}"
 echo "    yazt {-h --help}"
 echo "    yazt {-v --version}"
 echo "    yazt {-X --uninstall}"
-# echo "    yazt {-U --use}      [options] [theme]"
+echo "    yazt {-T --theme}" # [theme]"
 echo "    yazt {-P --pull}"
 echo ""
 echo "use 'yazt {-h --help}' with an operation for available options"
@@ -21,6 +26,7 @@ echo "use 'yazt {-h --help}' with an operation for available options"
 
 nocommand () {
 echo "no command specified or command not found (use yazt -h for help)"
+usage
 exit 1
 }
 
@@ -50,11 +56,11 @@ else
 fi
 }
 
-# themelist () {
-# for file in ~/dev/projects/yazt/themes/*; do 
-# echo ${file/$HOME\/dev\/projects\/yazt\/themes\/}
-# done
-# }
+ themelist () {
+ for file in $yazt/themes/*; do 
+ echo ${file/$yazt\/themes\/}
+ done
+ }
 
 # themeuse () {
 #   if [ -f "$yaztcustom/${2}.yzt" ]; then
@@ -70,19 +76,21 @@ fi
 # }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-	usage
+	help
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
 	version
 elif [[ "$1" == "-X" || "$1" == "--uninstall" ]]; then
 	uninstall
 elif [[ "$1" == "-P" || "$1" == "--pull" ]]; then
 	update
-# elif [[ "$1" == "-U" || "$1" == "--use" ]]; then
+elif [[ "$1" == "-T" || "$1" == "--theme" ]]; then
 # 	if [[ -z $2 ]]; then
-# 		themelist
+ 		themelist
 # 	else
 # 		themeuse
 # 	fi
+elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
+	usage
 else
 	nocommand
 fi
