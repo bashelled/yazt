@@ -1,0 +1,88 @@
+#!/usr/bin/zsh
+
+pause() {
+    prompt="$1"
+    echo -e -n "\033[1;36m$prompt"
+    echo -e -n '\033[0m'
+    read
+}
+
+usage () {
+echo "usage: yazt <operation> [...]"
+echo "operations:"
+echo "    yazt {-h --help}"
+echo "    yazt {-v --version}"
+echo "    yazt {-X --uninstall}"
+# echo "    yazt {-U --use}      [options] [theme]"
+echo "    yazt {-P --pull}"
+echo ""
+echo "use 'yazt {-h --help}' with an operation for available options"
+}
+
+nocommand () {
+echo "no command specified or command not found (use yazt -h for help)"
+exit 1
+}
+
+version () {
+echo "yazt-cli 0.91alpha1 -- zsh ${ZSH_VERSION}"
+}
+
+uninstall () {
+pause "Really uninstall Yazt? :: "
+pause "Are you sure? :: "
+pause "{!!} WARNING! THIS WILL REVERT TO YOUR ORIGINAL ZSH PROMPT! Are you sure? {!!} :: "
+rm -rfv $yazt/plugins
+rm -rfv $yazt/themes
+rm -rfv $yazt/etc 
+cat ~/.zshrc.preyazt > ~/.zshrc
+rm -rfv ~/.zshrc.preyazt 
+echo "Done! Remove your \$yazt file."
+}
+
+update () {
+echo "Pulling Yazt from official mirrors..."
+if git -C $yazt pull; then
+	echo "Sucessfully updated"
+else
+	echo "There was an error updating Yazt."
+	exit 1
+fi
+}
+
+# themelist () {
+# for file in ~/dev/projects/yazt/themes/*; do 
+# echo ${file/$HOME\/dev\/projects\/yazt\/themes\/}
+# done
+# }
+
+# themeuse () {
+#   if [ -f "$yaztcustom/${2}.yzt" ]; then
+#     yazttheme="$yaztcustom/${2}.yzt" zsh
+#   elif [ -f "$yaztcustom/themes/${2}.yzt" ]; then
+#     yazttheme="$yaztcustom/themes/${2}.yzt" zsh
+#   elif [ -f "$yazt/themes/${2}.yzt" ]; then
+#     yazttheme="$yazt/themes/${2}.yzt" zsh
+#   else
+#     echo "There was an error setting the theme. Either the theme doesn't exist or it is a directory."
+#     exit 1
+#   fi
+# }
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+	usage
+elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
+	version
+elif [[ "$1" == "-X" || "$1" == "--uninstall" ]]; then
+	uninstall
+elif [[ "$1" == "-P" || "$1" == "--pull" ]]; then
+	update
+# elif [[ "$1" == "-U" || "$1" == "--use" ]]; then
+# 	if [[ -z $2 ]]; then
+# 		themelist
+# 	else
+# 		themeuse
+# 	fi
+else
+	nocommand
+fi
