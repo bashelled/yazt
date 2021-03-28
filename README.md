@@ -12,3 +12,6 @@ chsh -s $(which zsh)
 ###### You can use the .deb in the Releases tab. See docs/debian.md.
 
 By default, no themes are added. You can add them yourself or copy from sources like [Oh My ZSH](ohmyz.sh) or [Bash-it](https://github.com/Bash-it/bash-it).
+
+*(NEW)* A feature will be coming to Yazt that will allow you to grab themes from sources, similar to Antigen, using the yazt command that can be enabled from your zshrc.
+###### Note for Bedrock Linux systems: Yazt CLI is a global executable by default.
