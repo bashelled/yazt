@@ -24,4 +24,14 @@ user@host : ~ % nano .zshrc && zsh
 user@host:~>
 ```
 
-###### Note for Bedrock Linux systems: Yazt CLI is a global executable by default, unless you installed it using the deb, then it will belong to Debian/Ubuntu/Devuan/...
+# Usage
+`yazt [-uhvXTPU] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]`
+`operations:
+    yazt {-u --usage}
+    yazt {-h --help}
+    yazt {-v --version}
+    yazt {-X --uninstall}
+    yazt {-T --theme} [user/theme]
+    yazt {-P --pull}`
+
+*Note for Bedrock Linux systems: Yazt CLI is a global executable by default, unless you installed it using the deb, then it will belong to Debian/Ubuntu/Devuan/...* 
