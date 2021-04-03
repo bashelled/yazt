@@ -56,6 +56,8 @@ echo -e "$green[68%]$reset Copying yaztrc to zshrc"
 cp $HOME/.yazt/etc/templates/rcs/zshrc $HOME/.zshrc
 echo -e "$green[82%]$reset Finalizing"
 chsh -s $(which zsh)
+mkdir $HOME/.yazt/etc/cache
+mkdir -p $HOME/.yazt/usr/{themes,plugins}
 echo -e "$green[100%]$reset Finishing up"
 sleep 5
 echo -e "$red Yazt is installed!$reset"
