@@ -5,13 +5,23 @@ Yazt is a simple yet challenging ZSH theme manager in maintence that is compatib
 
 ## Installation
 ```
-git clone https://github.com/bashelled/yazt.git ~/.yazt
-cp ~/.yazt/etc/templates/rcs/zshrc ~/.zshrc
-chsh -s $(which zsh)
+wget https://raw.github.com/bashelled/yazt/master/tools/install.sh
+./install.sh --synctopc
 ```
-###### You can use the .deb in the Releases tab. See docs/debian.md.
 
-By default, no themes are added. You can add them yourself or copy from sources like [Oh My ZSH](ohmyz.sh) or [Bash-it](https://github.com/Bash-it/bash-it).
+By default, no themes are added. You can add them yourself using the *copy ability.*
 
-*(NEW)* A feature will be coming to Yazt that will allow you to grab themes from sources, similar to Antigen, using the yazt command that can be enabled from your zshrc.
+Using the `yazt` command that can be added to your PATH, you can copy themes from GitHub.  
+For example, if a user wanted the a theme called zish (which could be a combination of zsh and fish, sherlock) and had Yazt installed, they would use:
+
+```
+user@host : ~ % yazt -T user/zish
+Copying user/zish...
+# ...
+Done!
+user@host : ~ % nano .zshrc && zsh
+...
+user@host:~>
+```
+
 ###### Note for Bedrock Linux systems: Yazt CLI is a global executable by default, unless you installed it using the deb, then it will belong to Debian/Ubuntu/Devuan/...

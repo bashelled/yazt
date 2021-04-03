@@ -1,5 +1,9 @@
 #!/usr/bin/zsh
 
+src() {
+. "$HOME/.zshrc"
+}
+
 pause() {
     prompt="$1"
     echo -e -n "\033[1;36m$prompt"
@@ -18,7 +22,7 @@ echo "    yazt {-u --usage}"
 echo "    yazt {-h --help}"
 echo "    yazt {-v --version}"
 echo "    yazt {-X --uninstall}"
-echo "    yazt {-T --theme}" # [theme]"
+echo "    yazt {-T --theme} [user] [theme]"
 echo "    yazt {-P --pull}"
 echo ""
 echo "use 'yazt {-h --help}' with an operation for available options"
@@ -31,7 +35,9 @@ exit 1
 }
 
 version () {
-echo "yazt-cli 0.91alpha1 -- zsh ${ZSH_VERSION}"
+echo "yazt version 1.0"
+echo "zsh version ${ZSH_VERSION}"
+echo "$(git --version)"
 }
 
 uninstall () {
@@ -56,25 +62,40 @@ else
 fi
 }
 
- themelist () {
- for file in $yazt/themes/*; do 
- echo ${file/$yazt\/themes\/}
- done
+themelist () {
+ls $yazt/themes
+ls $yaztcustom/themes
+}
+
+ themeuse () {
+  theme=${1/*\/}
+   if [ -f "$yaztcustom/${theme}.yzt" ]; then
+     echo "$theme already exists. Set it from your rc."
+   elif [ -f "$yaztcustom/themes/${theme}.yzt" ]; then
+     echo "$theme already exists. Set it from your rc."
+   elif [ -f "$yazt/themes/${theme}.yzt" ]; then
+     echo "$theme already exists. Set it from your rc."
+   else
+     echo "Copying $1..."
+     git clone https://github.com/$1 $yazt/etc/cache/$theme
+     themepath="$yazt/etc/cache/$theme"
+     if [[ -f $themepath/$theme.yzt ]]; then
+       mv $themepath/$theme.yzt $yaztcustom/themes
+       rm -rf $themepath
+       echo "Done!"
+     elif [[ -f $themepath/$theme.zsh ]]; then
+       echo "Could not find $theme.yzt, resorting to $theme.zsh"
+       mv $themepath/$theme.zsh $yaztcustom/themes
+       rm -rf $themepath
+     echo "Done!"
+     else
+       echo "Could not find $theme.yzt or $theme.zsh in repo"
+       rm -rf $themepath
+     fi 
+   fi
  }
 
-# themeuse () {
-#   if [ -f "$yaztcustom/${2}.yzt" ]; then
-#     yazttheme="$yaztcustom/${2}.yzt" zsh
-#   elif [ -f "$yaztcustom/themes/${2}.yzt" ]; then
-#     yazttheme="$yaztcustom/themes/${2}.yzt" zsh
-#   elif [ -f "$yazt/themes/${2}.yzt" ]; then
-#     yazttheme="$yazt/themes/${2}.yzt" zsh
-#   else
-#     echo "There was an error setting the theme. Either the theme doesn't exist or it is a directory."
-#     exit 1
-#   fi
-# }
-
+src
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 	help
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
@@ -84,11 +105,11 @@ elif [[ "$1" == "-X" || "$1" == "--uninstall" ]]; then
 elif [[ "$1" == "-P" || "$1" == "--pull" ]]; then
 	update
 elif [[ "$1" == "-T" || "$1" == "--theme" ]]; then
-# 	if [[ -z $2 ]]; then
+ 	if [[ -z $2 ]]; then
  		themelist
-# 	else
-# 		themeuse
-# 	fi
+ 	else
+ 		themeuse $2
+ 	fi
 elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
 	usage
 else

@@ -1,6 +1,5 @@
-# .zshrc - Custom config for zsh, with Yazt settings
-# --------------------------------------------------
-# See the Yazt wiki for more info.
+# .zshrc - Custom config for zsh, with settings for Yazt
+# ------------------------------------------------------
 
 ## Installation place of Yazt.
 yazt="$HOME/.yazt"
@@ -20,6 +19,9 @@ yazpon=true
  yazpplugins=(
  brew
  )
+
+# Adds Yazt CLI to your path.
+PATH="$yazt/bin:$PATH"
 
 # Initializes Yazt.
 source "$yazt/yazt.sh"
