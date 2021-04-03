@@ -26,7 +26,7 @@ user@host:~>
 
 # Usage
 ```
-yazt [-uhvXTPU] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]
+yazt [-uhvXTP] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]
 ```
 ```
 operations:
