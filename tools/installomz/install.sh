@@ -69,11 +69,9 @@ zsh
 exit
 }
 
-case $yazt in
-  *)
-  aex
-  ;;
-esac
+if [[ -d $HOME/.yazt ]]; then
+aex
+fi
 
 case $1 in
   --synctopc)
