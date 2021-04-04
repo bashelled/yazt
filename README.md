@@ -4,10 +4,20 @@
 Yazt is a simple yet challenging ZSH theme manager in maintence that is compatible with nearly everything. You can use prompts in plugins, mix 'n' match two themes, with a few modifications, you can even use it in bash, then even fish.
 
 ## Installation
+
+### Normal install
+Get the instal script and run it with --synctopc.
 ```
 wget https://raw.github.com/bashelled/yazt/master/tools/install.sh
 ./install.sh --synctopc
 ```
+
+### Install alongside Oh My ZSH!
+```
+wget https://raw.github.com/bashelled/yazt/master/tools/installomz/install.sh
+./install.sh --synctopc
+```
+This script moves your zshrc to ~/.zrcs, copys the yaztrc to the same directory, copys a new RC to your rc and makes a file called ~/.zside which handles the enviroment changing.
 
 By default, no themes are added. You can add them yourself using the *copy ability.*
 
@@ -24,7 +34,7 @@ user@host : ~ % nano .zshrc && zsh
 user@host:~>
 ```
 
-# Usage
+## Usage
 ```
 yazt [-uhvXTP] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]
 ```
