@@ -38,7 +38,7 @@ echo -e "$blue / /_/ / /_/ / / /_/ /_  $reset"
 sleep 0.1
 echo -e "$magneta \__, /\__,_/ /___/\__/  $reset"
 sleep 0.1
-echo -e "$red/____/is ready to install!$reset"
+echo -e "$red/____/is ready to install with OMZ!$reset"
 sleep 0.1
 echo -e ""
 sleep 1
@@ -52,19 +52,18 @@ echo -e "Installing$red Yazt...$reset"
 sleep 1
 echo -e "$green[15%]$reset Cloning into ~/.yazt"
 git clone https://$git/$mirror $HOME/.yazt
-echo -e "$green[39%]$reset Moving zshrc to ~/.zshrc.preyazt"
-if [[ -f $HOME/.zshrc ]]; then
-mv $HOME/.zshrc $HOME/.zshrc.preyazt
-else
-echo -e "$yellow WARN: zshrc not found$reset"
-fi
-echo -e "$green[68%]$reset Copying yaztrc to zshrc"
-cp $HOME/.yazt/etc/templates/rcs/zshrc $HOME/.zshrc
+echo -e "$green[39%]$reset Moving zshrc to ~/.zrcs"
+mkdir -p $HOME/.zrcs
+mv $HOME/.zshrc $HOME/.zrcs/ohmy.zsh
+echo -e "$green[68%]$reset Copying yaztrc to zrcs"
+cp $HOME/.yazt/etc/templates/rcs/zshrc $HOME/.zrcs/yazt.zsh
 echo -e "$green[82%]$reset Finalizing"
 chsh -s $(which zsh)
 mkdir $HOME/.yazt/etc/cache
 mkdir -p $HOME/.yazt/usr/{themes,plugins}
 echo -e "$green[100%]$reset Finishing up"
+cp $HOME/.yazt/tools/installomz/zshrc $HOME/.zshrc
+cp $HOME/.yazt/tools/installomz/zside $HOME/.zside
 sleep 5
 echo -e "$red Yazt is installed!$reset"
 zsh

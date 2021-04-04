@@ -1,0 +1,9 @@
+# zshrc: zsh settings, with juggling of Yazt and Oh My ZSH
+
+## Use Yazt.
+yazton=true
+
+## Use Oh My ZSH.
+omzon=true
+
+source ~/.zside

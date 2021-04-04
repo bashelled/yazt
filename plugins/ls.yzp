@@ -1,0 +1,5 @@
+alias ls="ls --color=auto"
+alias l="ls -p"
+alias ll="ls -l"
+alias la="ls -la"
+alias lah="ls -lAh"

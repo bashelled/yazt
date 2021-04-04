@@ -1,0 +1,5 @@
+if [[ "$yazton" == "true" ]]; then
+	source $HOME/.zrcs/yazt.zsh
+elif [[ "$omzon" == "true" ]]; then
+	source $HOME/.zrcs/ohmy.zsh
+fi
