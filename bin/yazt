@@ -22,10 +22,21 @@ echo "    yazt {-u --usage}"
 echo "    yazt {-h --help}"
 echo "    yazt {-v --version}"
 echo "    yazt {-X --uninstall}"
-echo "    yazt {-T --theme} [user] [theme]"
+echo "    yazt {-T --theme} [user/theme] [-u {gitee/github}]"
 echo "    yazt {-P --pull}"
 echo ""
-echo "use 'yazt {-h --help}' with an operation for available options"
+echo "use yazt -hh for more info"
+}
+
+helpadvanced () {
+usage
+echo ""
+echo "Normal operations:"
+echo "{-X --uninstall}: uninstall Yazt from your computer and recopys your old zshrc"
+echo "{-T --theme} [user/theme] [-u {gitee/github}]: copy a theme; without input, list themes"
+echo "    [user/theme]: repository including the theme"
+echo "    [-u {gitee,github}]: repo mirror to copy from"
+echo "{-P --pull}: pull and copy updates from the Yazt mirror to your local install"
 }
 
 nocommand () {
@@ -46,9 +57,9 @@ pause "Are you sure? :: "
 pause "{!!} WARNING! THIS WILL REVERT TO YOUR ORIGINAL ZSH PROMPT! Are you sure? {!!} :: "
 rm -rfv $yazt/plugins
 rm -rfv $yazt/themes
-rm -rfv $yazt/etc 
+rm -rfv $yazt/etc
 cat ~/.zshrc.preyazt > ~/.zshrc
-rm -rfv ~/.zshrc.preyazt 
+rm -rfv ~/.zshrc.preyazt
 echo "Done! Remove your \$yazt file."
 }
 
@@ -77,7 +88,11 @@ ls $yaztcustom/themes
      echo "$theme already exists. Set it from your rc."
    else
      echo "Copying $1..."
-     git clone https://github.com/$1 $yazt/etc/cache/$theme
+     if [[ "$2" == "gitee" ]]; then
+       git clone https://gitee.com/$1 $yazt/etc/cache/$theme
+     else
+       git clone https://github.com/$1 $yazt/etc/cache/$theme
+     fi
      themepath="$yazt/etc/cache/$theme"
      if [[ -f $themepath/$theme.yzt ]]; then
        mv $themepath/$theme.yzt $yaztcustom/themes
@@ -98,6 +113,8 @@ ls $yaztcustom/themes
 src
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 	help
+elif [[ "$1" == "-hh" ]]; then
+	helpadvanced
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
 	version
 elif [[ "$1" == "-X" || "$1" == "--uninstall" ]]; then
@@ -108,7 +125,11 @@ elif [[ "$1" == "-T" || "$1" == "--theme" ]]; then
  	if [[ -z $2 ]]; then
  		themelist
  	else
- 		themeuse $2
+		if [[ "$3" == "-u" ]]; then
+			themeuse $2 $4
+		else
+			themeuse $2
+		fi
  	fi
 elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
 	usage
