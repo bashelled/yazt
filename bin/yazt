@@ -46,7 +46,7 @@ exit 1
 }
 
 version () {
-echo "yazt version 1.0"
+echo "yazt version $yaztver"
 echo "zsh version ${ZSH_VERSION}"
 echo "$(git --version)"
 }

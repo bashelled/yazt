@@ -1,5 +1,6 @@
 # yazt.sh: Yazt loader based on Oh My ZSH
 
+yaztver="$(git describe --always --tags), rev $(git rev-list --count HEAD)"
 # Sets Yazt custom.
 if [[ -z "$yaztcustom" ]]; then
     yaztcustom="$yazt/usr"
