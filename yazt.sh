@@ -1,12 +1,16 @@
 # yazt.sh: Yazt loader based on Oh My ZSH
 
-yaztver="$(git describe --always --tags), rev $(git rev-list --count HEAD)"
-# Sets Yazt custom.
+# Sets Yazt version. Example output: 1.0-4, rev 67
+cd $yazt # changes to yazt, i don't like using git -C
+yaztver="$(git describe --abbrev=0 --tags), rev $(git rev-list --count HEAD)"
+cd $startdir # changes to startdir, the directory you start up in
+
+# Sets Yazt custom if not already set.
 if [[ -z "$yaztcustom" ]]; then
     yaztcustom="$yazt/usr"
 fi
 
-# Loads theme
+# Loads theme.
 if [ ! "$yazttheme" = ""  ]; then
   if [ -f "$yaztcustom/$yazttheme.yzt" ]; then
     source "$yaztcustom/$yazttheme.yzt"
@@ -35,3 +39,4 @@ for yazpplugin ($yazpplugins); do
 fi
 done
 fi
+

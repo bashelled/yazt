@@ -1,0 +1,18 @@
+Yazt can be compatible with most systems, including:
+
+macOS - >=10.14
+Linux - any system with git and zsh, with some minor flaws
+Other (*BSD/Minix/Solaris) -  any system with git and zsh
+
+Linux Distros:
+--------------
+If your distro isn't here, check if it is based on something. For example, Ubuntu is Debian, Manjaro is Arch, Fedora is RedHat, and Puppys are the system your install was based on (Fossapup == Ubuntu == Debian, Slacko == Slackware)
+Arch: Compatible
+Debian: Compatible
+RedHat: Compatible
+Slackware: Compatible
+Gobo: Compatible (enhancment: use /Programs/ZSH/*/bin/zsh instead of /usr/bin/zsh for more functionality)
+NixOS: /usr/bin/zsh not found (fix: use seperate tag for Nix (example: 1.0-4/nix) using env instead of zsh)
+GuixSD: /usr/bin/zsh not found (fix: link /guix/store/*-zsh*/bin/zsh to /usr/bin/zsh) WARN: THIS FIX HAS NOT BEEN USED, TRY THIS IN A VM!
+Gentoo: Compatible
+Bedrock: Compatible (enhancment)

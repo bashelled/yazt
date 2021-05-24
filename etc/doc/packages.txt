@@ -1,0 +1,16 @@
+Yazt can be installed with packages on most systems, here are some instructions:
+
+
+Debian:
+	Install the DEB file from the releases like so:
+	`dpkg -i yazt-anyarch.deb` or `apt install ./yazt-anyarch.deb`
+Arch:
+	Install the PKGBUILD from bashelled's ABS set with:
+	`git clone https://github.com/bashelled/aur`
+	`makepkg -p aur/yazt/PKGBUILD`
+Slackware:
+	Install the tgz from releases like this:
+	`installpkg yazt-*-any.tgz`
+
+To update, run `yazt -P
+It's also supported on different systems with porting.

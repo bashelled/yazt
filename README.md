@@ -2,6 +2,7 @@
 > Yet another ZSH theme 
 
 Yazt is a simple yet challenging ZSH theme manager that is compatible with nearly everything. You can use prompts in plugins, mix 'n' match two themes, with a few modifications, you can even use it in bash, then even fish.
+(note: as of May 23, master is not readdy. Try using the nix branch instead.)
 
 ## Installation
 

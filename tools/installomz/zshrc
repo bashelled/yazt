@@ -1,7 +1,8 @@
 # zshrc: zsh settings, with juggling of Yazt and Oh My ZSH
+# (control yazt and omz at ~/.zrcs/{ohmy,yazt}.zsh
 
 ## Use Yazt.
-yazton=true
+yazton=false
 
 ## Use Oh My ZSH.
 omzon=true

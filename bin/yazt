@@ -1,5 +1,9 @@
 #!/usr/bin/zsh
 
+if [[ "$verbose" == "on" ]]; then
+	echo "[verbosity on, setting -x mode]"; set -x
+fi
+
 src() {
 . "$HOME/.zshrc"
 }
@@ -12,7 +16,7 @@ pause() {
 }
 
 usage () {
-echo "usage: yazt [-uhvXTP] [--usage] [--help] [--version] [--uninstall] [--theme [THEME]] [--pull]"
+echo "usage: yazt [-uhvRSQ] [--usage] [--help] [--version] [--remove] [--sync [THEME]] [--pull]"
 }
 
 help () {
@@ -21,9 +25,9 @@ echo "operations:"
 echo "    yazt {-u --usage}"
 echo "    yazt {-h --help}"
 echo "    yazt {-v --version}"
-echo "    yazt {-X --uninstall}"
-echo "    yazt {-T --theme} [user/theme] [-u {gitee/github}]"
-echo "    yazt {-P --pull}"
+echo "    yazt {-R --remove}"
+echo "    yazt {-S --sync} [user/theme] [-u {gitee/github}]"
+echo "    yazt {-Q --query} [docpage]"
 echo ""
 echo "use yazt -hh for more info"
 }
@@ -32,11 +36,12 @@ helpadvanced () {
 usage
 echo ""
 echo "Normal operations:"
-echo "{-X --uninstall}: uninstall Yazt from your computer and recopys your old zshrc"
-echo "{-T --theme} [user/theme] [-u {gitee/github}]: copy a theme; without input, list themes"
+echo "{-R --remove}: uninstall Yazt from your computer and recopys your old zshrc"
+echo "{-S --sync} [user/theme] [-u {gitee/github}]: copy a theme; without input, list themes"
 echo "    [user/theme]: repository including the theme"
 echo "    [-u {gitee,github}]: repo mirror to copy from"
 echo "{-P --pull}: pull and copy updates from the Yazt mirror to your local install"
+echo "{-Q --query} [docpage]: Document specific things about Yazt"
 }
 
 nocommand () {
@@ -110,6 +115,18 @@ ls $yaztcustom/themes
    fi
  }
 
+doc () {
+if [[ -z $1 ]]; then
+	echo "No doc specified."
+else
+	if [[ -f $yazt/etc/doc/$1.txt ]]; then
+		cat $yazt/etc/doc/$1.txt | less
+	else
+		echo "Doc not found."
+	fi
+fi
+}
+
 src
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 	help
@@ -117,11 +134,11 @@ elif [[ "$1" == "-hh" ]]; then
 	helpadvanced
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
 	version
-elif [[ "$1" == "-X" || "$1" == "--uninstall" ]]; then
+elif [[ "$1" == "-R" || "$1" == "--remove" ]]; then
 	uninstall
 elif [[ "$1" == "-P" || "$1" == "--pull" ]]; then
 	update
-elif [[ "$1" == "-T" || "$1" == "--theme" ]]; then
+elif [[ "$1" == "-S" || "$1" == "--sync" ]]; then
  	if [[ -z $2 ]]; then
  		themelist
  	else
@@ -133,6 +150,8 @@ elif [[ "$1" == "-T" || "$1" == "--theme" ]]; then
  	fi
 elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
 	usage
+elif [[ "$1" == "-Q" || "$1" == "--query" ]]; then
+	doc $2
 else
 	nocommand
 fi
