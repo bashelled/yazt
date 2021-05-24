@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/Programs/ZSH/Current/bin/zsh
 
 src() {
 . "$HOME/.zshrc"
