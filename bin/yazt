@@ -16,7 +16,7 @@ pause() {
 }
 
 usage () {
-echo "usage: yazt [-uhvRSQ] [--usage] [--help] [--version] [--remove] [--sync [THEME]] [--pull]"
+echo "usage: yazt [-uhvSQT] [--usage] [--help] [--version} [--sync [THEME]] [--query]"
 }
 
 help () {
@@ -25,9 +25,10 @@ echo "operations:"
 echo "    yazt {-u --usage}"
 echo "    yazt {-h --help}"
 echo "    yazt {-v --version}"
-echo "    yazt {-R --remove}"
 echo "    yazt {-S --sync} [user/theme] [-u {gitee/github}]"
-echo "    yazt {-Q --query} [docpage]"
+echo "    yazt {-Q --qnadoc} [docpage]"
+echo "    yazt {-Rt --rolltag} [tag]"
+echo "    yazt {-Rb --rollbranch} [branch]}"
 echo ""
 echo "use yazt -hh for more info"
 }
@@ -36,12 +37,13 @@ helpadvanced () {
 usage
 echo ""
 echo "Normal operations:"
-echo "{-R --remove}: uninstall Yazt from your computer and recopys your old zshrc"
 echo "{-S --sync} [user/theme] [-u {gitee/github}]: copy a theme; without input, list themes"
 echo "    [user/theme]: repository including the theme"
 echo "    [-u {gitee,github}]: repo mirror to copy from"
-echo "{-P --pull}: pull and copy updates from the Yazt mirror to your local install"
-echo "{-Q --query} [docpage]: Document specific things about Yazt"
+echo "    [-Sy]: updates Yazt"
+echo "{-Q --qnadoc} [docpage]: Document specific things about Yazt"
+echo "    [docpage]: docpage with info you need"
+echo "{-T --tag}: rolls back and forth your tag/version using Git"
 }
 
 nocommand () {
@@ -56,18 +58,6 @@ echo "zsh version ${ZSH_VERSION}"
 echo "$(git --version)"
 }
 
-uninstall () {
-pause "Really uninstall Yazt? :: "
-pause "Are you sure? :: "
-pause "{!!} WARNING! THIS WILL REVERT TO YOUR ORIGINAL ZSH PROMPT! Are you sure? {!!} :: "
-rm -rfv $yazt/plugins
-rm -rfv $yazt/themes
-rm -rfv $yazt/etc
-cat ~/.zshrc.preyazt > ~/.zshrc
-rm -rfv ~/.zshrc.preyazt
-echo "Done! Remove your \$yazt file."
-}
-
 update () {
 echo "Pulling Yazt from official mirrors..."
 if git -C $yazt pull; then
@@ -79,7 +69,9 @@ fi
 }
 
 themelist () {
+echo "In the default themes:"
 ls $yazt/themes
+echo "In fetched themes:"
 ls $yaztcustom/themes
 }
 
@@ -127,6 +119,17 @@ else
 fi
 }
 
+rolltag () {
+if [[ -z $1 ]]; then
+	echo "No tag specified."
+	exit 1
+fi
+if git -C $yazt checkout tags/$1; then
+	echo "Switched to tag/version $1"
+else
+	echo "Error switching."
+fi
+}
 src
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 	help
@@ -134,9 +137,7 @@ elif [[ "$1" == "-hh" ]]; then
 	helpadvanced
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
 	version
-elif [[ "$1" == "-R" || "$1" == "--remove" ]]; then
-	uninstall
-elif [[ "$1" == "-P" || "$1" == "--pull" ]]; then
+elif [[ "$1" == "-Syu" || "$1" == "--update" ]]; then
 	update
 elif [[ "$1" == "-S" || "$1" == "--sync" ]]; then
  	if [[ -z $2 ]]; then
@@ -150,8 +151,10 @@ elif [[ "$1" == "-S" || "$1" == "--sync" ]]; then
  	fi
 elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
 	usage
-elif [[ "$1" == "-Q" || "$1" == "--query" ]]; then
+elif [[ "$1" == "-Q" || "$1" == "--qnadoc" ]]; then
 	doc $2
+elif [[ "$1" == "-T" || "$1" == "--tag" ]]; then
+	rolltag $2
 else
 	nocommand
 fi
