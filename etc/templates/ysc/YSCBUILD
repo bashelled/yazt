@@ -1,5 +1,8 @@
 # This is a small Yasc script for a pack. It is a
-# template, and you need to change stuff.
+# template, and you need to change things to make
+# it work.
+# (NOTE: Yasc scripts are not done yet.)
+
 name=
 epoch=
 yscdesc=""
