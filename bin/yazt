@@ -26,19 +26,18 @@ pause() {
 }
 
 usage () {
-echo "usage: $redyazt$reset [-uhvSQB] [--usage] [--help] [--version} [--sync [THEME]] [--query]"
+echo "usage:$red yazt$reset [-uhvSQB] [--usage] [--help] [--version} [--sync [THEME]] [--query]"
 }
 
 help () {
 echo "usage:$red yazt$reset <operation> [...]"
 echo "operations:"
-echo "    $redyazt$reset {-u --usage}"
-echo "    $redyazt$reset {-h --help}"
-echo "    $redyazt$reset {-v --version}"
-echo "    $redyazt$reset {-S --sync} [user/theme] [-u {gitee/github}]"
-echo "    $redyazt$reset {-Q --qnadoc} [docpage]"
-echo "    $redyazt$reset {-B --branch} [branch]"
-echo "    $redyazt$reset {-C --config}"
+echo "    {-u --usage}"
+echo "    {-h --help}"
+echo "    {-v --version}"
+echo "    {-S --sync} [user/theme] [-u {gitee/github}]"
+echo "    {-Q --qnadoc} [docpage]"
+echo "    {-B --branch} [branch]"
 echo ""
 echo "use$red yazt$reset -hh for more info"
 }
@@ -67,6 +66,17 @@ version () {
 echo "$red-> yazt version $yaztver$reset"
 echo "$green-> zsh version ${ZSH_VERSION}$reset"
 echo "$cyan-> $(git --version) $reset"
+echo "(Note: Use -vv for more info)"
+}
+
+morever () {
+source /etc/os-release
+
+echo "$red-> yazt version $yaztver$reset"
+echo "$green-> zsh version ${ZSH_VERSION}$reset"
+echo "$cyan-> $(git --version) $reset"
+echo ""
+echo "OS"
 }
 
 update () {

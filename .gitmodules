@@ -1,0 +1,12 @@
+[submodule "usr/packs/usr/packs/zsh-autosuggestions"]
+	path = usr/packs/usr/packs/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "usr/packs/zsh-autosuggestions"]
+	path = usr/packs/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "usr/packs/zsh-syntax-highlighting"]
+	path = usr/packs/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "usr/packs/zsh-completions"]
+	path = usr/packs/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
