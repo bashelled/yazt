@@ -1,5 +1,15 @@
 #!/usr/bin/zsh
 
+black=$(printf '\u001b[30m')
+red=$(printf '\u001b[31m')
+green=$(printf '\u001b[32m')
+yellow=$(printf '\u001b[33m')
+blue=$(printf '\u001b[34m')
+magenta=$(printf '\u001b[35m')
+cyan=$(printf '\u001b[36m')
+white=$(printf '\u001b[37m')
+reset=$(printf '\u001b[0m')
+
 if [[ "$verbose" == "on" ]]; then
 	echo "[verbosity on, setting -x mode]"; set -x
 fi
@@ -16,21 +26,21 @@ pause() {
 }
 
 usage () {
-echo "usage: yazt [-uhvSQT] [--usage] [--help] [--version} [--sync [THEME]] [--query]"
+echo "usage: $redyazt$reset [-uhvSQB] [--usage] [--help] [--version} [--sync [THEME]] [--query]"
 }
 
 help () {
-echo "usage: yazt <operation> [...]"
+echo "usage:$red yazt$reset <operation> [...]"
 echo "operations:"
-echo "    yazt {-u --usage}"
-echo "    yazt {-h --help}"
-echo "    yazt {-v --version}"
-echo "    yazt {-S --sync} [user/theme] [-u {gitee/github}]"
-echo "    yazt {-Q --qnadoc} [docpage]"
-echo "    yazt {-Rt --rolltag} [tag]"
-echo "    yazt {-Rb --rollbranch} [branch]}"
+echo "    $redyazt$reset {-u --usage}"
+echo "    $redyazt$reset {-h --help}"
+echo "    $redyazt$reset {-v --version}"
+echo "    $redyazt$reset {-S --sync} [user/theme] [-u {gitee/github}]"
+echo "    $redyazt$reset {-Q --qnadoc} [docpage]"
+echo "    $redyazt$reset {-B --branch} [branch]"
+echo "    $redyazt$reset {-C --config}"
 echo ""
-echo "use yazt -hh for more info"
+echo "use$red yazt$reset -hh for more info"
 }
 
 helpadvanced () {
@@ -43,36 +53,41 @@ echo "    [-u {gitee,github}]: repo mirror to copy from"
 echo "    [-Sy]: updates Yazt"
 echo "{-Q --qnadoc} [docpage]: Document specific things about Yazt"
 echo "    [docpage]: docpage with info you need"
-echo "{-T --tag}: rolls back and forth your tag/version using Git"
+echo "{-B --branch}: rolls back and forth your branch/variation using Git"
+echo ""
 }
 
 nocommand () {
-echo "no command specified or command not found (use yazt -h for help)"
+echo "$red-> No command specified or command not found$reset $blue(use yazt -h for help)$reset"
 usage
 exit 1
 }
 
 version () {
-echo "yazt version $yaztver"
-echo "zsh version ${ZSH_VERSION}"
-echo "$(git --version)"
+echo "$red-> yazt version $yaztver$reset"
+echo "$green-> zsh version ${ZSH_VERSION}$reset"
+echo "$cyan-> $(git --version) $reset"
 }
 
 update () {
-echo "Pulling Yazt from official mirrors..."
+echo "$yellow-> Pulling Yazt from official mirrors...$reset"
 if git -C $yazt pull; then
-	echo "Sucessfully updated"
+	echo "$green-> Sucessfully updated$reset"
 else
-	echo "There was an error updating Yazt."
+	echo "$redThere was an error updating Yazt.$reset"
 	exit 1
 fi
 }
 
 themelist () {
-echo "In the default themes:"
+echo "In the$red default$reset themes:"
 ls $yazt/themes
-echo "In fetched themes:"
+echo ""
+echo "In$green fetched$reset themes:"
 ls $yaztcustom/themes
+echo ""
+echo "In$cyan Yasc-installed$reset themes:"
+ls $yazt/usr/yasc
 }
 
  themeuse () {
@@ -119,13 +134,13 @@ else
 fi
 }
 
-rolltag () {
+rollbranch () {
 if [[ -z $1 ]]; then
 	echo "No tag specified."
 	exit 1
 fi
-if git -C $yazt checkout tags/$1; then
-	echo "Switched to tag/version $1"
+if git -C $yazt checkout $1; then
+	echo "Switched to branch $1"
 else
 	echo "Error switching."
 fi
@@ -153,8 +168,8 @@ elif [[ "$1" == "-u" || "$1" == "--usage" ]]; then
 	usage
 elif [[ "$1" == "-Q" || "$1" == "--qnadoc" ]]; then
 	doc $2
-elif [[ "$1" == "-T" || "$1" == "--tag" ]]; then
-	rolltag $2
+elif [[ "$1" == "-B" || "$1" == "--branch" ]]; then
+	rollbranch $2
 else
 	nocommand
 fi

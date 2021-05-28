@@ -4,14 +4,13 @@
 # (NOTE: Yasc scripts are not done yet.)
 
 name=
-epoch=
-yscdesc=""
-arch=()
+desc=""
 url=""
 license=('GPL')
 depends=()
-makedepends=()
-checkdepends=()
-optdepends=()
 changelog=
 git=(https://github.com/user/theme)
+
+optdep () {
+	echo "dependone: Completing task 2"
+}
