@@ -1,6 +1,3 @@
-[submodule "usr/packs/usr/packs/zsh-autosuggestions"]
-	path = usr/packs/usr/packs/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "usr/packs/zsh-autosuggestions"]
 	path = usr/packs/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
