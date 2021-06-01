@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 black=$(printf '\u001b[30m')
 red=$(printf '\u001b[31m')
@@ -66,7 +66,6 @@ version () {
 echo "$red-> yazt version $yaztver$reset"
 echo "$green-> zsh version ${ZSH_VERSION}$reset"
 echo "$cyan-> $(git --version) $reset"
-echo "(Note: Use -vv for more info)"
 }
 
 morever () {
@@ -76,7 +75,17 @@ echo "$red-> yazt version $yaztver$reset"
 echo "$green-> zsh version ${ZSH_VERSION}$reset"
 echo "$cyan-> $(git --version) $reset"
 echo ""
-echo "OS"
+echo "Current OS: $PRETTY_NAME"
+echo "Index: $USER@$(hostname -s)"
+echo "Path to binary: $1"
+echo "os-release:"
+cat /etc/os-release
+echo "neofetch results:"
+if [[ -f /usr/bin/neofetch ]]; then
+	neofetch
+else
+	echo "* neofetch not found"
+fi
 }
 
 update () {
@@ -162,6 +171,8 @@ elif [[ "$1" == "-hh" ]]; then
 	helpadvanced
 elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
 	version
+elif [[ "$1" == "-vv" ]]; then
+	morever $0
 elif [[ "$1" == "-Syu" || "$1" == "--update" ]]; then
 	update
 elif [[ "$1" == "-S" || "$1" == "--sync" ]]; then
