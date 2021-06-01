@@ -23,6 +23,10 @@ if [ ! "$yazttheme" = ""  ]; then
     source "$yazt/themes/default.yzt"
 fi
 
+for pack ($yaztcustom/packs/*/*.plugin.zsh); do
+	source $pack
+done
+
 # Yazp loader.
 if [ "$yazpon" = "true" ]; then
 for yazpplugin ($yazpplugins); do
